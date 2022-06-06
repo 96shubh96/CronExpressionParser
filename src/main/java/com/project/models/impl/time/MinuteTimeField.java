@@ -6,6 +6,6 @@ import com.project.models.TimeField;
 public class MinuteTimeField extends TimeField {
 
     public MinuteTimeField(String str) {
-        super(0, 60, str, TimeFieldName.MINUTE);
+        super(0, 59, str, TimeFieldName.MINUTE);
     }
 }
