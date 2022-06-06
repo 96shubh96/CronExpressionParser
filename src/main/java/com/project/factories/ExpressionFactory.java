@@ -21,11 +21,11 @@ public class ExpressionFactory {
         if (str.contains("/")) {
             return expressionMap.get('/');
         }
-        else if (str.contains("-")) {
-            return expressionMap.get('-');
-        }
         else if (str.contains(",")) {
             return expressionMap.get(',');
+        }
+        else if (str.contains("-")) {
+            return expressionMap.get('-');
         }
         else if (str.equals("*")) {
             return expressionMap.get('*');

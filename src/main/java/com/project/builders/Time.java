@@ -1,9 +1,11 @@
 package com.project.builders;
 
+import com.project.models.TimeField;
 import com.project.models.impl.time.*;
 
 public class Time {
     public static final int TOTAL_FIELDS = 6;
+    private static final String COMMAND="command";
     MinuteTimeField minuteTimeField;
     HourTimeField hourTimeField;
     DayOfMonthTImeField dayOfMonthTImeField;
@@ -12,12 +14,17 @@ public class Time {
     String command;
 
     public String getFinalOutput() {
+        int remainingSpaces = TimeField.TOTAL_SPACES - COMMAND.length();
+        StringBuilder spaces = new StringBuilder();
+        for (int i = 0; i < remainingSpaces; i++) {
+            spaces.append(" ");
+        }
         return minuteTimeField.getInfo() + System.lineSeparator() +
                 hourTimeField.getInfo() + System.lineSeparator() +
                 dayOfMonthTImeField.getInfo() + System.lineSeparator() +
                 monthTImeField.getInfo() + System.lineSeparator() +
                 weekDayTimeField.getInfo() + System.lineSeparator() +
-                "comand" + " " + command;
+                COMMAND + spaces.toString() + command;
     }
 
     public static TimeBuilder builder() {

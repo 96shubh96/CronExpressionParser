@@ -7,6 +7,7 @@ import lombok.SneakyThrows;
 
 @Getter
 public abstract class TimeField {
+    public static final int TOTAL_SPACES = 14;
     private final TimeFieldName name;
     private final int minVal;
     private final int maxVal;
@@ -25,8 +26,13 @@ public abstract class TimeField {
     @SneakyThrows
     public String getInfo() {
         String info;
-        try{
-            info = String.join(" ", name.getValue(), expression.getDetailedData(str, minVal, maxVal));
+        int remainingSpaces = TOTAL_SPACES - name.getValue().length();
+        StringBuilder spaces = new StringBuilder();
+        for (int i = 0; i < remainingSpaces; i++) {
+            spaces.append(" ");
+        }
+        try {
+            info = String.join(spaces.toString(), name.getValue(), expression.getDetailedData(str, minVal, maxVal));
         } catch (Exception e) {
             throw new Exception(String.format("Error in parsing %s field: %s", name.name(), e.getMessage()));
         }

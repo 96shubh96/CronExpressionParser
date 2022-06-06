@@ -18,17 +18,20 @@ public class CronExpressionParser {
         if (args.length == 0) {
             throw new Exception("Input args cannot be empty");
         }
-        if (args.length != Time.TOTAL_FIELDS){
+        if (args.length < Time.TOTAL_FIELDS){
             throw new Exception("Invalid Arguments !!!");
         }
-
+        StringBuilder command = new StringBuilder();
+        for (int j=5;j< args.length;j++){
+            command.append(args[j]+" ");
+        }
         return Time.builder()
                 .minuteTimeField(new MinuteTimeField(args[0]))
                 .hourTimeField(new HourTimeField(args[1]))
                 .dayOfMonthTimeField(new DayOfMonthTImeField(args[2]))
                 .monthTimeField(new MonthTimeField(args[3]))
                 .dayOfWeekTimeField(new WeekDayTimeField(args[4]))
-                .command(args[5])
+                .command(command.toString())
                 .build();
     }
 }
